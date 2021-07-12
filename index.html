@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Multipeer</title>
+    <link rel="stylesheet" href="/style.css">
+
+    <link rel="stylesheet" href="\chat.css">
+    <link rel="stylesheet" href="\vc.css">
+    <link rel="stylesheet" href="\nav.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="/jquery-3.6.0.min.js"></script>
+    <!-- <script src="scripts/jquery.signalR-2.2.2.min.js"></script> -->
+    <!-- <script src="https://localhost:44338/signalr/hubs"></script> -->
+    <script defer src="merger.js"></script>
+    <script src="/wrtchelper.js"></script>
+    <script defer src="/app.js"></script>
+    <script defer src="/note.js"></script>
+
+    <script>
+
+        $(function () {
+            arr2 = localStorage.getItem('itemsJsn')
+            arr = JSON.parse(arr2);
+            console.log(arr)
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            var meeting_id = urlParams.get('mid');
+
+            if (!meeting_id) {
+                var murl = window.location.origin + "/index.html?mid=" +  (new Date()).getTime();
+                $('#meetingid').attr('href',murl).text(murl);
+                $("#meetingContainer").hide();
+                $("#meetingbox").show();
+                return;
+            }
+
+            var user_id = urlParams.get('uid');
+            if (!user_id) {
+                user_id=arr[0];
+            }
+
+            if (!user_id || !meeting_id) {
+                alert('user id or meeting id missing');
+                return;
+            }
+            $("#meetingContainer").show();
+            $("#meetingbox").hide();
+
+            MyApp._init(user_id,meeting_id);
+        });
+    </script>
+</head>
+
+<body>
+    
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <!-- <img src="Screenshot (1235).png" height="20px"> -->
+            <a class="navbar-brand"><b>MicroMeet</b></a>
+            <a id="act4" href="/"><b>Home</b></a>
+            <form class="d-flex">
+                <label for="fname" id="l5" class="time3"></label>
+                <!-- <a class="improvemrnt" id="act4" href="#">HelpUs</a> -->
+                <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button> -->
+            </form>
+        </div>
+    </nav>
+    <div id="meetingbox" style="display: none;">
+        <p class="text4">It seems you are not trying to join any existing meeting!
+            You may start a new meeting. Here is link generated for you. <a id='meetingid' href="#"></a>
+        </p>
+    </div>
+    <audio style="display:none" id="audioentry" >
+        <source src="entry.mp3" type="audio/mpeg">
+    </audio>
+    <audio style="display:none" id="audiochat" >
+        <source src="chat.mp3" type="audio/mpeg">
+    </audio>
+    <div class="row">
+        <div class="col-xl-8">
+            <div id="meetingContainer" style="display: none;">
+                <h1 id='meetingname'></h1>
+                <div id="afterendvc" style="display:none"><center>Thank you for joining Micromeet</center><br>
+                <center>you can see the messsages going on in the meeting and can participate in it too!! </center>
+                <center><button id="rejoina">ReJoin</button>
+                <button id="returnhome">Return to Home </button></center>
+                </div>
+                <div id='divUsers' style="display:none">
+                            <div id="otherTemplate" class="userbox" style="display:none">
+                                <h5></h5>
+                                <div>
+                                    <video autoplay muted id="remoteVideoCtr111"></video>
+                                    <audio autoplay controls style="display:none" id="remoteAudioCtr111"></audio>
+
+                                </div>
+                            </div>
+                    <div id="me" class="userbox">
+                        <h5></h5>
+                        <div>
+                            <video autoplay muted id="localVideoCtr"></video>
+
+                        </div>
+                        <video autoplay muted id="videoCtrRec" style="display: none;"></video>
+
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <div class="col-xl-4"><br>
+                <div class="container" style="display:none;">
+                    <h4>Messages</h4>
+                    <div class="row">
+                    <div class="col-xl-10" id="msguper">
+                    You might have some previous messages associate with this meeting,click to get if any! 
+                    </div>
+                    <div class="col-xl-2">
+                        <br>
+                <center><button type="button" id="prevmsgs">
+                    <!-- <span class="buttext">load</span> -->
+                    <span class="buticon">
+                        <ion-icon name="refresh"></ion-icon>
+                    </span>
+
+                </button></center><br>
+                </div>
+                <br>
+                <hr>
+                </div>
+                    <!-- <div class="message right">Me:helloo ji</div><br>
+           <div class="message left">roshan:kse ho</div>
+           <div class="message right">Me:helloo ji</div><br>
+           <div class="message left">roshan:kse ho</div> -->
+                </div>
+                <div class="send" id="send_c" style="display:none;">
+                    <form id="send_container">
+                        <input type="text" name="messageinput" id="messageinput" placeholder="type your message here...">
+                        <button type="button" class="btn" id="send">Send
+                            <!-- yaha logo bhi asakta -->
+                        </button>
+
+                    </form>
+                </div>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+        <div class="toolbox" style="display:none">
+            <button id="btnMuteUnmute">
+                <!-- <ion-icon name="mic-off"></ion-icon> -->
+                UnMute
+            </button>
+            <button id="btnStartStopCam">Start Camera</button>
+            <button id="btnStartStopScreenshare">Screen Share</button>
+            <button id="btnStartReco">Start Recording</button>
+            <button id="btnPauseReco" style="display:none">Pause</button>
+            <button id="btnResumeReco" style="display:none">Resume</button>
+            <button id="btnStopReco" style="display:none">Stop</button>
+            <select id="filter">
+                <option value="none"><b>Filters</b></option>
+                <option value="grayscale(100%)">B & W</option>
+                <option value="sepia(100%)">Old School</option>
+                <option value="contrast(150%)">Lumination</option>
+                <option value="blur(20px)">Hidden Mist</option>
+                <option value="invert(100%)">Dracula</option>
+                <option value="hue-rotate(180deg">X-men Beast</option>
+                <option value="saturate(25)">Super Saiyan God</option>
+
+            </select>
+            
+            <button id="btnResetMeeting">Reset Meeting</button>
+            
+            <button id="btnendVideoCall">End VideoCall</button>
+            
+             <br>
+            <a href="" id="downloadRecording" style="display:none">Download</a>
+
+        </div>
+    </div>
+    <br>
+    <div class="form1" style="display:none;">
+        <form>
+            <img src="icon to do.png" height=50px><br><br>
+            <label for="fname" id="l1"><b>TITLE</b></label><br>
+            <input type="text" id="fname1" name="fname"><br>
+            <label for="lname" id="l2"><b>Description/note</b></label><br>
+            <input type="text" id="lname1" name="lname"><br><br>
+            <!-- <label for="price" id="l3"><b>Price</b></label><br> -->
+            <!-- <input type="text" id="price" name="price"><br><br><br> -->
+            <input type="button" value="add" class="but" id="but1">
+        </form>
+    </div>
+</div>
+
+<div class="cpl" style="display:none;">
+<br><br>
+<h3>
+    <center>Important Notes</center>
+</h3>
+<br>
+</div>
+<div class="t1" style="display:none;">
+<table class="table" id="table1">
+    <thead>
+
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Pen</td>
+            <td>2-blue and 3-red</td>
+            <td><input type="button" value="Delete" class="but2"></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+    <!-- <script defer src="chat.js"></script> -->
+    <script defer src="/socket.io/socket.io.js"></script>
+    <script>
+        let a;
+          let time1;
+          let date1;
+          setInterval(()=>{
+          a=new Date();
+          date1=a.toLocaleDateString();
+          time1=a.getHours() + ':' +a.getMinutes()+':'+a.getSeconds();
+          document.querySelector(".time3").innerHTML='Date:'+ date1+'    '+'Time:'+time1;
+          },1000)
+    </script>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+
+ .nav1{
+    float:right;
+    width:50%;
+    height:35px;
+    /* background-color:rgb(22, 80, 67); */
+    margin-right:10px;
+    text-align: center;
+    padding-right: 15px;
+    margin-top: 10px;
+} 
+.contend{
+    /* float:right; */
+    width:80%;
+    height:270px;
+    /* background-color:rgb(22, 80, 67); */
+    margin-left:80px;
+    text-align: left;
+    padding-right: 15px;
+    clear:both;
+    font-size: 30px;
+
+}
+.form{
+   /* background-color: rgb(22, 80, 67); */
+   margin-top: 10px;
+    width: 80%;
+    margin-left:30px;
+    text-align: center;
+    /* border:2px solid black; */
+    /* border-radius:10px; */
+    /* color:white; */
+
+   
+}
+#l1{
+    /* color: white; */
+    font-size: 20px;
+}
+#l2{  
+    margin-top: 30px;
+}
+
+#fnameen{
+    width:35%;
+    height:50px;
+    border-radius: 10px;
+   
+}
+#lnameen{
+width:50%;
+height:50px;
+border-radius: 10px;
+overflow:visible;
+}
+
+
+.buten1{
+    background-color:rgb(121, 19, 216);
+    color: white;
+    width:140px;
+    height:50px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-left: -270px;
+   }
+.buten2{
+    width: 70px;
+    margin-left: 10px;
+    margin-top: 10px;
+    /* margin-left: -50px; */
+   }
+.cards{
+    float:center; 
+    width:30%;
+    height:35px;
+    /* background-color:grey; */
+    /* margin-top:30px; */
+    text-align: right;
+    padding-right:0px;
+    /* margin:auto; */
+}
+/* .col{
+    background-color: rebeccapurple;
+} */
+.card{
+    /* background-color: rgb(22, 80, 67); */
+    color:white;
+}
+.quote{
+    width:100%;
+    background-color: rgb(121, 19, 216);
+    color: white;
+    margin-top: 60px;
+    /* margin-bottom: 0px; */
+}
+.bcolosal{
+    height:400px;
+}
+.time3{
+    font-size: 20px;
+    margin-right: 10px;
+}

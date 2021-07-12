@@ -1,0 +1,145 @@
+body{
+    background-color: black;
+}
+.butc{
+    margin-left: 270px;
+    margin-top: 30px;
+}
+#my{
+    margin-left: 100px;
+}
+#filter{
+    background-color: rgb(71, 68, 71);
+    color:white;
+    border-radius: 15px;
+    height: 50px;
+    cursor: pointer;
+}
+
+#btnMuteUnmute{
+    background-color: rgb(95, 93, 93);
+    color:white;
+    border-radius: 15px;
+    height: 50px;
+    cursor: pointer;
+}
+#btnStartStopCam{
+    background-color: rgb(95, 93, 93);
+    color:white;
+    border-radius: 15px;
+    height: 50px;
+    cursor: pointer;
+}
+/* #startConnection{
+    background-color: rgb(204, 47, 47);
+    color:white;
+    border-radius: 20px;
+    height: 50px;
+    cursor: pointer;
+} */
+#btnStartStopScreenshare{
+    background-color: rgb(95, 93, 93);
+    color:white;
+    border-radius: 15px;
+    height: 50px;
+    cursor: pointer;
+}
+
+#btnStartReco{
+    background-color: rgb(95, 93, 93);
+    color:white;
+    border-radius: 15px;
+    height: 50px;
+    cursor: pointer;
+}
+#btnPauseReco{
+    background-color: rgb(95, 93, 93);
+    color:white;
+    border-radius: 15px;
+    height: 50px;
+    cursor: pointer;
+}
+#btnResumeReco{
+    background-color: rgb(95, 93, 93);
+    color:white;
+    border-radius: 15px;
+    height: 50px;
+    cursor: pointer;
+}
+#btnStopReco{
+    background-color: rgb(95, 93, 93);
+    color:white;
+    border-radius: 15px;
+    height: 50px;
+    cursor: pointer;
+}
+h2{
+    color:white
+}
+#l5{
+    color: aliceblue;
+}
+.time3{
+    font-size: 20px;
+}
+#btnResetMeeting{
+    background-color: rgb(204, 47, 47);
+    color:white;
+    border-radius: 15px;
+    height: 50px;
+    cursor: pointer;
+}
+#btnendVideoCall{
+    background-color: rgb(204, 47, 47);
+    color:white;
+    border-radius: 15px;
+    height: 50px;
+    cursor: pointer;
+}
+/* #localVideoCtr{
+    width: 50%;
+
+} */
+.toolbox{
+    margin-top:-50px;
+    margin-left: 30px;
+}
+
+
+/* #me{
+    width: 200px;
+    margin-left: 60px;
+
+} */
+
+#act4{
+    margin-left: -830px;
+}
+#afterendvc{
+    margin-left:100px;
+    margin-top: 100px;
+    color: white;
+    background-color: rgb(63, 23, 63);
+    /* background-color: violet; */
+    border-radius: 15px;
+}
+#rejoina{
+    background-color: rgb(139, 133, 133);
+    color:white;
+    border-radius: 5px;
+    height: 40px;
+    width: 70px;
+    cursor: pointer;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+#returnhome{
+    background-color: rgb(139, 133, 133);
+    color:white;
+    border-radius: 5px;
+    height: 40px;
+    width: 170px;
+    cursor: pointer;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}

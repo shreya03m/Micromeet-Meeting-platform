@@ -1,0 +1,120 @@
+.whole{
+    width:100%;
+    background-color: rgb(109, 106, 106);
+    overflow: auto;
+}
+.comp{
+    width:100%;
+    background-color: rgb(49, 49, 49);
+    overflow: auto;
+}
+.form1{
+    /* float:center; */
+    width:40%;
+    /* background-color: rgb(133, 206, 240); */
+    margin:auto;
+    margin-top: 40px;
+    overflow: auto;
+    border: 7px solid rgb(121, 19, 216);
+    border-radius: 30px;
+   
+    
+}
+.form1 form{
+    text-align: center;
+    background-color: black
+    padding: 5px;
+    color:purple;
+    text-decoration: none;
+    font-size: 15px;
+    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-left:auto;
+
+}
+/* .navbar {
+    width:30%;
+    background-color: rgb(49, 49, 49);
+    overflow: auto;
+    margin-left: 20px;
+  }
+  
+  /* Navbar links */
+  /* .navbar a{
+    float: left;
+    text-align: center;
+    padding: 3px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+  } */
+  
+  /* Navbar links on mouse-over */
+  /* .navbar a:hover {
+    background-color: #000;
+  }
+   */
+  /* Current/active navbar link */
+  /* .active{
+    background-color: pink;
+    border-radius: 4px;
+     } */
+   #but1{
+    background-color:rgb(121, 19, 216);
+    width:100px;
+    height:50px;
+    border-radius: 10px;
+   }
+   .but2{
+    background-color:rgb(121, 19, 216);
+    width:100px;
+    height:40px;
+    border-radius: 10px;
+    margin:auto;
+   }
+   .t1{
+      color: white;
+      align-items: center;
+      width:80%;
+      background-color:rgb(133, 206, 240);
+      margin:auto;
+      margin:auto;
+      
+   }
+   .table{
+    /* background-color:plum; */
+    margin:auto;
+   }
+   #fname1{
+        width:45%;
+        height:60px;
+        border-radius: 10px;
+       
+   }
+   #lname1{
+    width:60%;
+    height:70px;
+    border-radius: 10px;
+    
+}  
+/* #price{
+    width:30%;
+    height: 40px;
+    border-radius: 10px;
+    
+} */
+    
+#l2{  
+    margin-top: 30px;
+}
+h3{
+  color: aliceblue;
+}
+
+  /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+  @media screen and (max-width: 500px) {
+    .navbar a {
+      float: none;
+      display: block;
+    }
+  }
